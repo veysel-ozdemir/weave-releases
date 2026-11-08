@@ -16,6 +16,16 @@ This repository holds Weave's downloads. **Get the latest version under
 | macOS 12 or newer (Apple silicon and Intel) | `Weave-…-macos.dmg` | Open it and drag Weave to Applications. |
 | Linux (x86_64, glibc 2.35 or newer, e.g. Ubuntu 22.04) | `Weave-…-linux-x86_64.AppImage` | Make it executable (`chmod +x`), then run it. Where AppImages don't run, use the `.tar.gz` and start `./weave` in its folder. |
 
+## Guides
+
+- [Installing Weave](docs/install.md): each system step by step, what Windows and macOS show on
+  the first start, updating, uninstalling, and where Weave keeps its data.
+- [Getting started](docs/getting-started.md): a first project, the window, writing, saving,
+  packages, fonts and exporting a PDF.
+- [Bibliographies and Zotero](docs/bibliography.md): citations, styles, and a bibliography that
+  keeps itself up to date.
+- [History and Git](docs/history-and-git.md): snapshots to go back to, and Git to share a project.
+
 ## Checking a download
 
 Each release has `SHA256SUMS`, the SHA-256 of every file in it, and `SHA256SUMS.asc`, its
@@ -27,6 +37,10 @@ curl -sSL https://github.com/veysel-ozdemir.gpg | gpg --import
 gpg --verify SHA256SUMS.asc SHA256SUMS
 sha256sum --check --ignore-missing SHA256SUMS   # macOS: shasum -a 256 --check --ignore-missing
 ```
+
+GPG then says "Good signature from Veysel Ozdemir", and also warns that the key "is not certified
+with a trusted signature". The warning is normal for a key you have just imported, and the good
+signature is what counts.
 
 ## Problems and ideas
 
