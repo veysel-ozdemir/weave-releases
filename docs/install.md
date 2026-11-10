@@ -8,7 +8,7 @@ file for your system:
 |---|---|---|
 | Windows | Windows 10 or 11, 64-bit (x64) | `Weave-…-windows-x64-setup.exe` |
 | macOS | macOS 12 or newer, Apple silicon or Intel | `Weave-…-macos.dmg` |
-| Linux | 64-bit (x86_64), glibc 2.35 or newer (Ubuntu 22.04, Debian 12, Fedora 36 or newer), a desktop with GTK 3 | `Weave-…-linux-x86_64.AppImage`, or `Weave-…-linux-x86_64.tar.gz` |
+| Linux | 64-bit (x86_64), glibc 2.35 or newer (Ubuntu 22.04, Debian 12, Fedora 36 or newer), a desktop with GTK 3 and OpenGL ES (Mesa) | `Weave-…-linux-x86_64.AppImage`, or `Weave-…-linux-x86_64.tar.gz` |
 
 Weave works offline. It goes online only for what you do: a Typst package that your document
 imports and that isn't on your computer yet, the list of all packages (in the **Packages** tab),
@@ -27,6 +27,22 @@ To check that a download is complete and comes from Weave's author, see
 3. **The setup** installs Weave for you alone, in `%LOCALAPPDATA%\Programs\Weave`, without
    asking for an administrator. It adds Weave to the Start menu, and a desktop icon if you tick
    it. At the end it can start Weave.
+
+### Smart App Control
+
+On Windows 11, **Smart App Control** runs only apps that Microsoft already trusts or that carry a
+code signature from a paid certificate. Weave's beta isn't signed, so with Smart App Control on,
+Weave doesn't start: Windows shows **Bad Image** (in German **Ungültiges Bild**) naming one of
+Weave's files, such as `file_selector_windows_plugin.dll`, with the status `0xc0e90002`. Unlike
+the warning in step 2, this one has no way past it.
+
+To use the beta, turn Smart App Control off: **Windows Security** → **App & browser control** →
+**Smart App Control settings** → **Off**. Then start Weave again; you don't need to reinstall it.
+
+Smart App Control is a protection of Windows, so decide for yourself. On current versions of
+Windows 11 (with the updates from April 2026) you can turn it back on in the same place; on older
+versions, turning it back on needs a reset of Windows. Many PCs have it off anyway, for example
+most of those upgraded from Windows 10.
 
 **Updating:** run the new version's setup file. It replaces the old version and keeps your
 settings. If Weave is open, the setup offers to close it.
@@ -75,11 +91,24 @@ The AppImage doesn't add itself to your desktop's menu. Tools such as Gear Lever
 AppImageLauncher do that, or keep the file in a folder of your own, for example
 `~/Applications`.
 
+Weave draws its window with **OpenGL ES**, which desktops have through Mesa. Minimal systems and
+WSL (Linux on Windows) may lack it: then Weave stops at once with
+`Couldn't open libGLESv2.so.2`, and the AppImage says what to install. On Debian, Ubuntu and WSL:
+`sudo apt install libgles2 libegl1 libgl1-mesa-dri`; on Fedora: `sudo dnf install libglvnd-gles`.
+
+Started from a terminal, Weave may print messages that need no action:
+
+- `libEGL warning: …` and `MESA: error: ZINK: failed to choose pdev`: the graphics library found
+  no GPU driver (usual in WSL and virtual machines) and draws in software instead.
+- `Using the Impeller rendering backend`: Flutter, which Weave is built with, names how it draws.
+- `Gdk-Message: Unable to load … from the cursor theme`: a mouse pointer shape is missing from the
+  system's theme; the normal pointer is used.
+
 ### The .tar.gz
 
 Where AppImages don't run: unpack it (`tar xzf Weave-…-linux-x86_64.tar.gz`) and start `weave`
-in the folder it creates. It needs GTK 3, which desktops have; on a minimal system, install
-your distribution's GTK 3 package (for example `libgtk-3-0`).
+in the folder it creates. It needs GTK 3 and OpenGL ES, which desktops have; on a minimal system,
+install your distribution's packages (for example `libgtk-3-0` and `libgles2`).
 
 **Updating:** replace the AppImage (or the folder) with the new one.
 

@@ -12,9 +12,9 @@ This repository holds Weave's downloads. **Get the latest version under
 
 | System | File | First start |
 |---|---|---|
-| Windows 10 and 11 (x64) | `Weave-…-windows-x64-setup.exe` | Not signed yet: Windows shows "Windows protected your PC"; choose **More info → Run anyway**. It installs for you alone, without admin rights. |
+| Windows 10 and 11 (x64) | `Weave-…-windows-x64-setup.exe` | Not signed: Windows shows "Windows protected your PC"; choose **More info → Run anyway**. It installs for you alone, without admin rights. With **Smart App Control** on (Windows 11), Weave doesn't start: turn it off first, as the [install guide](docs/install.md#smart-app-control) explains. |
 | macOS 12 or newer (Apple silicon and Intel) | `Weave-…-macos.dmg` | Open it and drag Weave to Applications. |
-| Linux (x86_64, glibc 2.35 or newer, e.g. Ubuntu 22.04) | `Weave-…-linux-x86_64.AppImage` | Make it executable (`chmod +x`), then run it. Where AppImages don't run, use the `.tar.gz` and start `./weave` in its folder. |
+| Linux (x86_64, glibc 2.35 or newer, e.g. Ubuntu 22.04) | `Weave-…-linux-x86_64.AppImage` | Make it executable (`chmod +x`), then run it. Where AppImages don't run, use the `.tar.gz` and start `./weave` in its folder. It needs OpenGL ES (Mesa), which desktops have; on WSL: `sudo apt install libgles2`. |
 
 ## Guides
 
