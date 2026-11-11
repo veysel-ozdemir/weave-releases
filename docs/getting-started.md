@@ -95,7 +95,8 @@ many there are.
 
 ## Settings and commands
 
-- **Settings** (Cmd/Ctrl+, or the gear): **Appearance** (light or dark, and a larger interface
+- **Settings** (Cmd/Ctrl+, or the gear): **Appearance** (the language: English, Deutsch or
+  Türkçe, at first your system's when it is one of them; light or dark; a larger interface
   text), **Editor** (font, size, wrapping, autosave, what a click in the preview does), **This
   project** (spelling languages, automatic snapshots, PDF export), **Git**, **Storage**
   (downloaded packages), **Keyboard shortcuts** and **About** (version and licenses).
